@@ -13,7 +13,5 @@ jobs:
             contents: write
         steps:
             - uses: actions/checkout@v4
-            - env:
-                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-              name: Create Release
+            - name: Create Release
               run: gh release create "${GITHUB_REF#refs/*/}" -t "$(grep name config/version.php | awk -F "'" '{print $4}')" --notes-file RELEASE_NOTES.md
